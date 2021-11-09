@@ -14,7 +14,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  /* background-image: url("background.png"); */
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -35,10 +35,10 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -69,7 +69,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -77,7 +79,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -90,16 +94,16 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -111,8 +115,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -208,7 +210,7 @@ input {
   font-size: 20px;
   height: 48px;
 }
-.formData[data-error]::after {
+/* .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
   color: #e54858;
@@ -225,7 +227,7 @@ input {
 }
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
-}
+} */
 /* 
 input[data-error]::after {
     content: attr(data-error);
@@ -527,3 +529,17 @@ footer {
   }
 }
 
+/*Ajouts correctifs*/
+
+.error {
+  color: #ff4e60;
+  border: #ff4e60 2px solid;
+  transition: 00.3s;
+}
+.error-message {
+  font-size: 0.4em;
+  color: #ff4e60;
+  margin: 7px 0 7px 0;
+  text-align: right;
+  line-height: 0.3;
+}
