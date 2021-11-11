@@ -543,3 +543,6 @@ footer {
   text-align: right;
   line-height: 0.3;
 }
+.display {
+  display: none;
+}

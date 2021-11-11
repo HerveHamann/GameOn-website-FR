@@ -14,12 +14,17 @@ const inputs = document.querySelectorAll(
   'input[type="text"],input[type="email"],input[type="date"],input[type="number"]'
 );
 const cities = document.querySelectorAll('input[type="radio"]');
+const citycheck = document.getElementById("citycheck");
 
-const checkbox = document.querySelectorAll('input[type="checkbox]');
+const checkbox1 = document.querySelector("#checkbox1");
+const conditions = document.getElementById("conditionscheck");
+
+const submit = document.querySelector(".content");
+const completionError = document.querySelector("#completionerror");
+
+let first, last, email, quantity, town, conditionAccepted, newsletter;
 
 //Function
-let first, last, email, quantity;
-
 const errorDisplay = (tag, message, valid) => {
   const container = document.querySelector("#" + tag);
   const span = document.querySelector("#" + tag + " +span");
@@ -85,16 +90,14 @@ const emailChecker = (value) => {
 };
 
 const tournamentQuantityChecker = (value) => {
-  if (!value.match(/^[+](0|1|2|3|4|5|6)$/)) {
+  if (!value.match(/^\d+$/)) {
     errorDisplay("quantity", "Vous devez entrer un nombre entier");
+    quantity = null;
   } else {
     errorDisplay("quantity", "", true);
+    quantity = value;
   }
 };
-
-const radioBtnChecked = (value) => {};
-const conditionCaseChecked = (value) => {};
-const newsletterChecker = (value) => {};
 
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
@@ -111,6 +114,8 @@ inputs.forEach((input) => {
       case "quantity":
         tournamentQuantityChecker(e.target.value);
         break;
+      case "location6":
+        console.log("hello");
       default:
         null;
     }
@@ -118,9 +123,71 @@ inputs.forEach((input) => {
 });
 
 cities.forEach((city) => {
-  city.addEventListener("click", (e) => {
-    console.log(e.target.id);
+  city.addEventListener("input", (e) => {
+    let cityValue;
+    if (city.checked) {
+      cityValue = city.value;
+    }
+    if (cityValue) {
+      citycheck.textContent = "";
+      town = e.target.value;
+    }
   });
+});
+
+checkbox1.addEventListener("input", (e) => {
+  if (checkbox1.checked) {
+    conditionAccepted = checkbox1.value;
+  }
+  if (conditionAccepted) {
+    conditions.textContent = "";
+    conditionAccepted = e.target.value;
+  }
+});
+
+const checkbox2 = document.querySelector("#checkbox2");
+checkbox2.addEventListener("input", (e) => {
+  if (checkbox2.checked) {
+    newsletter = checkbox2.value;
+  }
+});
+
+submit.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!town) {
+    citycheck.classList.remove("display");
+  }
+  if (!conditionAccepted) {
+    conditions.classList.remove("display");
+  }
+  if (first && last && email && quantity && town && conditionAccepted) {
+    completionError.classList.add("display");
+    const data = {
+      first: first,
+      last: last,
+      email: email,
+      quantity: quantity,
+      town: town,
+      conditionAccepted: conditionAccepted,
+      newsletter: newsletter,
+    };
+
+    console.log(data);
+    inputs.forEach((input) => (input.value = ""));
+    cities.forEach((city) => (city.checked = false));
+    checkbox1.checked = false;
+    checkbox2.checked = false;
+    first = null;
+    last = null;
+    email = null;
+    quantity = null;
+    town = null;
+    conditionAccepted = null;
+    newletter = null;
+  } else {
+    completionError.classList.remove("display");
+  }
 });
 
 //End of work
