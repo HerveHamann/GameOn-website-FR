@@ -13,6 +13,7 @@ const closeBtn = document.querySelector(".close");
 const inputs = document.querySelectorAll(
   'input[type="text"],input[type="email"],input[type="date"],input[type="number"]'
 );
+
 const cities = document.querySelectorAll('input[type="radio"]');
 const citycheck = document.getElementById("citycheck");
 
@@ -22,6 +23,10 @@ const conditions = document.getElementById("conditionscheck");
 const submit = document.querySelector(".content");
 const completionError = document.querySelector("#completionerror");
 
+const thanksPage = document.getElementById("thankspage");
+
+const closePageCross = document.getElementById("thanksclosecross");
+const closePageButton = document.getElementById("thanksclosebutton");
 let first, last, email, quantity, town, conditionAccepted, newsletter;
 
 //Function
@@ -173,7 +178,11 @@ submit.addEventListener("submit", (event) => {
       newsletter: newsletter,
     };
 
+    thanksPage.style.display = "block";
+    modalbg.style.display = "none";
+
     console.log(data);
+
     inputs.forEach((input) => (input.value = ""));
     cities.forEach((city) => (city.checked = false));
     checkbox1.checked = false;
@@ -184,7 +193,7 @@ submit.addEventListener("submit", (event) => {
     quantity = null;
     town = null;
     conditionAccepted = null;
-    newletter = null;
+    newsletter = null;
   } else {
     completionError.classList.remove("display");
   }
@@ -214,5 +223,15 @@ function launchModal() {
 closeBtn.addEventListener("click", () => {
   modalbg.style.display = "none";
 });
+// close thanks modal
 
+closePageButton.addEventListener("click", () => {
+  thanksPage.style.display = "none";
+});
+
+closePageCross.addEventListener("click", () => {
+  thanksPage.style.display = "none";
+});
 //End of work
+
+4;

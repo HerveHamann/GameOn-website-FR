@@ -546,3 +546,12 @@ footer {
 .display {
   display: none;
 }
+.thankstext {
+  font-size: 36px;
+  margin: 286px 121px 312px 105px;
+  text-align: center;
+  line-height: 51px;
+}
+.closing {
+  margin-bottom: 17px;
+}
