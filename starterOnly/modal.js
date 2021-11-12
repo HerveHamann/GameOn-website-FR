@@ -13,6 +13,7 @@ const closeBtn = document.querySelector(".close");
 const inputs = document.querySelectorAll(
   'input[type="text"],input[type="email"],input[type="date"],input[type="number"]'
 );
+console.log(inputs);
 
 const cities = document.querySelectorAll('input[type="radio"]');
 const citycheck = document.getElementById("citycheck");
@@ -27,7 +28,14 @@ const thanksPage = document.getElementById("thankspage");
 
 const closePageCross = document.getElementById("thanksclosecross");
 const closePageButton = document.getElementById("thanksclosebutton");
-let first, last, email, quantity, town, conditionAccepted, newsletter;
+let first,
+  last,
+  email,
+  quantity,
+  town,
+  conditionAccepted,
+  newsletter,
+  birthdate;
 
 //Function
 const errorDisplay = (tag, message, valid) => {
@@ -103,6 +111,9 @@ const tournamentQuantityChecker = (value) => {
     quantity = value;
   }
 };
+const birthdateCheker = (value) => {
+  birthdate = value;
+};
 
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
@@ -119,8 +130,9 @@ inputs.forEach((input) => {
       case "quantity":
         tournamentQuantityChecker(e.target.value);
         break;
-      case "location6":
-        console.log("hello");
+      case "birthdate":
+        birthdateCheker(e.target.value);
+
       default:
         null;
     }
@@ -134,7 +146,7 @@ cities.forEach((city) => {
       cityValue = city.value;
     }
     if (cityValue) {
-      citycheck.textContent = "";
+      citycheck.classList.add("display");
       town = e.target.value;
     }
   });
@@ -143,17 +155,19 @@ cities.forEach((city) => {
 checkbox1.addEventListener("input", (e) => {
   if (checkbox1.checked) {
     conditionAccepted = checkbox1.value;
+  } else {
+    conditionAccepted = null;
   }
   if (conditionAccepted) {
-    conditions.textContent = "";
     conditionAccepted = e.target.value;
+    conditions.classList.add("display");
   }
 });
 
 const checkbox2 = document.querySelector("#checkbox2");
-checkbox2.addEventListener("input", (e) => {
+checkbox2.addEventListener("input", () => {
   if (checkbox2.checked) {
-    newsletter = checkbox2.value;
+    newsletter = true;
   }
 });
 
@@ -166,7 +180,15 @@ submit.addEventListener("submit", (event) => {
   if (!conditionAccepted) {
     conditions.classList.remove("display");
   }
-  if (first && last && email && quantity && town && conditionAccepted) {
+  if (
+    first &&
+    last &&
+    email &&
+    quantity &&
+    town &&
+    conditionAccepted &&
+    birthdate
+  ) {
     completionError.classList.add("display");
     const data = {
       first: first,
@@ -176,6 +198,7 @@ submit.addEventListener("submit", (event) => {
       town: town,
       conditionAccepted: conditionAccepted,
       newsletter: newsletter,
+      birthdate: birthdate,
     };
 
     thanksPage.style.display = "block";
@@ -194,6 +217,7 @@ submit.addEventListener("submit", (event) => {
     town = null;
     conditionAccepted = null;
     newsletter = null;
+    birthdate = null;
   } else {
     completionError.classList.remove("display");
   }
