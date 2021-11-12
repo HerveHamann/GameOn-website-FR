@@ -3,7 +3,24 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
-///Work add by Herve Hamann 1
+function editNav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+// launch modal event
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+// launch modal form
+function launchModal() {
+  modalbg.style.display = "block";
+}
+
+///Work add by Herve Hamann
 
 //close btn element
 const closeBtn = document.querySelector(".close");
@@ -13,7 +30,6 @@ const closeBtn = document.querySelector(".close");
 const inputs = document.querySelectorAll(
   'input[type="text"],input[type="email"],input[type="date"],input[type="number"]'
 );
-console.log(inputs);
 
 const cities = document.querySelectorAll('input[type="radio"]');
 const citycheck = document.getElementById("citycheck");
@@ -223,26 +239,6 @@ submit.addEventListener("submit", (event) => {
   }
 });
 
-//End of work
-
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
-//Work of Herve Hamann 2
-
 // close modal event
 closeBtn.addEventListener("click", () => {
   modalbg.style.display = "none";
@@ -257,5 +253,3 @@ closePageCross.addEventListener("click", () => {
   thanksPage.style.display = "none";
 });
 //End of work
-
-4;
