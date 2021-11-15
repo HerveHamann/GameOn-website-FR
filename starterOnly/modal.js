@@ -38,7 +38,6 @@ const checkbox1 = document.querySelector("#checkbox1");
 const conditions = document.getElementById("conditionscheck");
 
 const submit = document.querySelector(".content");
-const completionError = document.querySelector("#completionerror");
 
 const thanksPage = document.getElementById("thankspage");
 
@@ -128,8 +127,24 @@ const tournamentQuantityChecker = (value) => {
   }
 };
 const birthdateCheker = (value) => {
-  birthdate = value;
+  if (value.length !== 10) {
+    errorDisplay("birthdate", "Veuilez completer votre date de naissance");
+    birthdate = null;
+  } else {
+    errorDisplay("birthdate", "", true);
+    birthdate = value;
+  }
 };
+
+if (checkbox1.checked) {
+  conditionAccepted = checkbox1.value;
+} else {
+  conditionAccepted = null;
+}
+if (conditionAccepted) {
+  conditionAccepted = e.target.value;
+  conditions.classList.add("display");
+}
 
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
@@ -190,6 +205,21 @@ checkbox2.addEventListener("input", () => {
 submit.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  if (!first) {
+    errorDisplay("first", "Veuillez completer ce champs");
+  }
+  if (!last) {
+    errorDisplay("last", "Veuillez completer ce champs");
+  }
+  if (!email) {
+    errorDisplay("email", "Veuillez completer ce champs");
+  }
+  if (!quantity) {
+    errorDisplay("quantity", "Veuillez completer ce champs");
+  }
+  if (!birthdate) {
+    errorDisplay("birthdate", "Veuillez completer ce champs");
+  }
   if (!town) {
     citycheck.classList.remove("display");
   }
@@ -205,7 +235,6 @@ submit.addEventListener("submit", (event) => {
     conditionAccepted &&
     birthdate
   ) {
-    completionError.classList.add("display");
     const data = {
       first: first,
       last: last,
@@ -234,8 +263,13 @@ submit.addEventListener("submit", (event) => {
     conditionAccepted = null;
     newsletter = null;
     birthdate = null;
-  } else {
-    completionError.classList.remove("display");
+
+    modalBtn.forEach((btn) =>
+      btn.addEventListener("click", () => {
+        thanksPage.style.display = "block";
+        modalbg.style.display = "none";
+      })
+    );
   }
 });
 
