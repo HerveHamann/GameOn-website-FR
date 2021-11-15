@@ -206,19 +206,19 @@ submit.addEventListener("submit", (event) => {
   event.preventDefault();
 
   if (!first) {
-    errorDisplay("first", "Veuillez completer ce champs");
+    errorDisplay("first", "Veuillez completer ce champ");
   }
   if (!last) {
-    errorDisplay("last", "Veuillez completer ce champs");
+    errorDisplay("last", "Veuillez completer ce champ");
   }
   if (!email) {
-    errorDisplay("email", "Veuillez completer ce champs");
+    errorDisplay("email", "Veuillez completer ce champ");
   }
   if (!quantity) {
-    errorDisplay("quantity", "Veuillez completer ce champs");
+    errorDisplay("quantity", "Veuillez completer ce champ");
   }
   if (!birthdate) {
-    errorDisplay("birthdate", "Veuillez completer ce champs");
+    errorDisplay("birthdate", "Veuillez completer ce champ");
   }
   if (!town) {
     citycheck.classList.remove("display");
