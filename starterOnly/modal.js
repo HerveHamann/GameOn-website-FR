@@ -136,16 +136,6 @@ const birthdateCheker = (value) => {
   }
 };
 
-if (checkbox1.checked) {
-  conditionAccepted = checkbox1.value;
-} else {
-  conditionAccepted = null;
-}
-if (conditionAccepted) {
-  conditionAccepted = e.target.value;
-  conditions.classList.add("display");
-}
-
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     switch (e.target.id) {
