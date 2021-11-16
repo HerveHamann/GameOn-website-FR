@@ -31,11 +31,15 @@ const inputs = document.querySelectorAll(
   'input[type="text"],input[type="email"],input[type="date"],input[type="number"]'
 );
 
+const dateInput = document.getElementById("birthdate");
+
 const cities = document.querySelectorAll('input[type="radio"]');
 const citycheck = document.getElementById("citycheck");
 
 const checkbox1 = document.querySelector("#checkbox1");
 const conditions = document.getElementById("conditionscheck");
+
+const checkbox2 = document.querySelector("#checkbox2");
 
 const submit = document.querySelector(".content");
 
@@ -127,12 +131,14 @@ const tournamentQuantityChecker = (value) => {
   }
 };
 const birthdateCheker = (value) => {
-  if (value.length !== 10) {
-    errorDisplay("birthdate", "Veuilez completer votre date de naissance");
-    birthdate = null;
-  } else {
+  let date = new Date(value);
+
+  if (date instanceof Date && value.length === 10) {
     errorDisplay("birthdate", "", true);
     birthdate = value;
+  } else {
+    errorDisplay("birthdate", "Veuilez completer votre date de naissance");
+    birthdate = null;
   }
 };
 
@@ -151,15 +157,15 @@ inputs.forEach((input) => {
       case "quantity":
         tournamentQuantityChecker(e.target.value);
         break;
-      case "birthdate":
-        birthdateCheker(e.target.value);
-
       default:
         null;
     }
   });
 });
 
+dateInput.addEventListener("focusout", (e) => {
+  birthdateCheker(e.target.value);
+});
 cities.forEach((city) => {
   city.addEventListener("input", (e) => {
     let cityValue;
@@ -185,7 +191,6 @@ checkbox1.addEventListener("input", (e) => {
   }
 });
 
-const checkbox2 = document.querySelector("#checkbox2");
 checkbox2.addEventListener("input", () => {
   if (checkbox2.checked) {
     newsletter = true;
